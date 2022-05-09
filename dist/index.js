@@ -4,14 +4,19 @@ import * as THREE from "https://unpkg.com/three@0.127.0/build/three.module.js";
 const canvas = document.querySelector(".webgl");
 const scene = new THREE.Scene();
 
-const textureLoader = new THREE.TextureLoader();
 
-const sunGeo = new THREE.SphereGeometry(30, 30, 30);
-const sunMat = new THREE.MeshBasicMaterial({
-  map: textureLoader.load("../img/sun.jpg"),
-});
-const sun = new THREE.Mesh(sunGeo, sunMat);
-scene.add(sun);
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+//const textureLoader = new THREE.TextureLoader();
+
+//const sunGeo = new THREE.SphereGeometry(30, 30, 30);
+//const sunMat = new THREE.MeshBasicMaterial({
+//  map: textureLoader.load("../img/sun.jpg"),
+//});
+//const sun = new THREE.Mesh(sunGeo, sunMat);
+//scene.add(sun);
 
 const sizes = {
   width: window.innerWidth,
@@ -24,7 +29,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(0, 0, 110);
+camera.position.set(0, 1, 2);
 scene.add(camera);
 
 const renderer = new THREE.WebGLRenderer({
@@ -36,7 +41,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
 
 function animate() {
-  sun.rotateY(0.004);
+  //sun.rotateY(0.004);
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
 }
